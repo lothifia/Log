@@ -22,7 +22,7 @@ set_test.erase(num| iterator)//根据数值或者 地址来删除
 
 set 用于优化 <font color='green'>滑动窗口</font> 
 
-![20191106171908375](readme.assets/20191106171908375-1618682174542.png)
+https://github.com/lothifia/Log/blob/main/readme.assets/20191106171908375-1618682427723.png
 
 #### Leetcode 220 重复元素: 
 
