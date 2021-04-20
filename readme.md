@@ -100,4 +100,4 @@ for循环 到$ i = 5$  此时str中 $ c!= a$ 在  $j$ 处回溯,
 
 **不断回溯找前缀的 后一位 比较**
 
-https://github.com/lothifia/Log/blob/main/readme.assets/61B2DA6A4975E890E866C3114DCCB72A.png
+![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/61B2DA6A4975E890E866C3114DCCB72A.png)
