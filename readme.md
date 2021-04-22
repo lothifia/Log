@@ -149,7 +149,7 @@ for(int i = 1; i < nums.size() + 1; i++){
 
 方法2 图
 
-
+[Image text](https://github.com/lothifia/Log/blob/main/readme.assets/2devision_updata.png)
 
 
 
@@ -165,7 +165,7 @@ int sumRegion(int row1, int col1, int row2, int col2) {
 
 解法 图
 
-
+[Image text](https://github.com/lothifia/Log/blob/main/readme.assets/2devision.png)
 
 #### LC [304. 二维区域和检索 - 矩阵不可变](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/)(二维前缀, 遍历优化)
 
