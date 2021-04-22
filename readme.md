@@ -28,6 +28,8 @@ set_test.erase(num| iterator)//根据数值或者 地址来删除
 
 set 用于优化 <font color='green'>滑动窗口</font> (二分查找 可以让时间从$n^2$ 降到 $nlog(n)$)
 
+![20191106171908375-1618682427723](readme.assets/20191106171908375-1618682427723.png)
+
 ![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/20191106171908375-1618682427723.png)
 
 
@@ -102,6 +104,8 @@ for循环 到$ i = 5$  此时str中 $ c!= a$ 在  $j$ 处回溯,
 
 **不断回溯找前缀的 后一位 比较**
 
+![61B2DA6A4975E890E866C3114DCCB72A](readme.assets/61B2DA6A4975E890E866C3114DCCB72A.png)
+
 ![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/61B2DA6A4975E890E866C3114DCCB72A.png)
 
 ### 4.22 前缀和
@@ -149,6 +153,8 @@ for(int i = 1; i < nums.size() + 1; i++){
 
 方法2 图
 
+![2devision_updata](readme.assets/2devision_updata.png)
+
 ![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/2devision_updata.png)
 
 
@@ -166,6 +172,8 @@ int sumRegion(int row1, int col1, int row2, int col2) {
 解法 图
 
 ![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/2devision.png)
+
+![2devision](readme.assets/2devision.png)
 
 #### LC [304. 二维区域和检索 - 矩阵不可变](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/)(二维前缀, 遍历优化)
 
