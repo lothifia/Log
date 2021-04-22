@@ -30,7 +30,7 @@ set 用于优化 <font color='green'>滑动窗口</font> (二分查找 可以让
 
 ![20191106171908375-1618682427723](readme.assets/20191106171908375-1618682427723.png)
 
-
+![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/20191106171908375-1618682427723.png)
 
 
 
@@ -208,11 +208,11 @@ answer[j] % answer[i] == 0
 
 首先对$nums$排序, 使其变为升序序列.
 
-维护一个长度为$nums.size()$的序列 $v[len]$, 由于每个整数都可以整除本身, 所以$v$初始化为1;
+维护一个长度为nums.size()的序列 ​v[len]​, 由于每个整数都可以整除本身, 所以$v$初始化为1;
 
-对于递增的每个数值$nums[i]$ ,遍历$nums[j](j\in \{0\sim j\})$, 如果$nums[i] $可以整除 $nums[j]$
+对于递增的每个数值nums[i] ,遍历nums[j] (j in \{0 ~ j\}), 如果$nums[i] $可以整除 $nums[j]$
 
-则根据<font color='red'>整除子集的性质</font>可以判断$nums[i]$ 也可以整除内的所有子集,
+则根据<font color='red'>整除子集的性质</font>可以判断nums[i]​ 也可以整除内的所有子集,
 
 ![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/423.png)
 $$
