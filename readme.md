@@ -205,6 +205,8 @@ answer[j] % answer[i] == 0
 对于递增的每个数值$nums[i]$ ,遍历$nums[j](j\in \{0\sim j\})$, 如果$nums[i] $可以整除 $nums[j]$
 
 则根据<font color='red'>整除子集的性质</font>可以判断$nums[i]$ 也可以整除内的所有子集,
+
+![Image text](readme.assets/423.png)
 $$
 v[i] = max\{\ v[i], max\{\left.\begin{matrix} 
    nums[i] \% nums[j] == 0\\ j \in \{0 \sim i-1  \}
