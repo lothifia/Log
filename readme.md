@@ -169,5 +169,60 @@ int sumRegion(int row1, int col1, int row2, int col2) {
 
 #### LC [304. 二维区域和检索 - 矩阵不可变](https://leetcode-cn.com/problems/range-sum-query-2d-immutable/)(二维前缀, 遍历优化)
 
-##### 
+题目描述 :给你一个 m x n 的矩阵 matrix 和一个整数 k ，找出并返回矩阵内部矩形区域的不超过 k 的最大数值和。
 
+题目数据保证总会存在一个数值和不超过 k 的矩形区域。
+
+来源：力扣（LeetCode）
+
+**思考: 遍历, 变上下, 从左向右搜索矩形(若面积恒$S >= 0$ 则可设置剪枝条件) **
+
+由于 Sr - Sl < k, Sr不断变化, 可以考虑 Sr - k < Sl 找已经存下的 Sl 满足条件的, 此处可以用二分搜索优化, 最后复杂度$m^2*nlog(n)$;
+
+### 4.23 动态规划
+
+#### [368. 最大整除子集](https://leetcode-cn.com/problems/largest-divisible-subset/)
+
+给你一个由 无重复 正整数组成的集合 nums ，请你找出并返回其中最大的整除子集 answer ，子集中每一元素对 (answer[i], answer[j]) 都应当满足：
+answer[i] % answer[j] == 0 ，或
+answer[j] % answer[i] == 0
+如果存在多个有效解子集，返回其中任何一个均可。
+
+来源：力扣（LeetCode）
+
+**思路 :**   将 小 的整除子集, <font color='red'>扩充</font> 为最大整除子集(不需要保存数组)
+
+​			如何扩大? <font color='red'>整除子集有性质</font>: $a \% b = 0, b\% c = 0$则$a \% c = 0$
+
+​			即可使用动态规划的思想对$nums[i]$中所有整数求出最大整除子集:
+
+**初始化**
+
+首先对$nums$排序, 使其变为升序序列.
+
+维护一个长度为$nums.size()$的序列 $v[len]$, 由于每个整数都可以整除本身, 所以$v$初始化为1;
+
+对于递增的每个数值$nums[i]$ ,遍历$nums[j](j\in \{0\sim j\})$, 如果$nums[i] $可以整除 $nums[j]$
+
+则根据<font color='red'>整除子集的性质</font>可以判断$nums[i]$ 也可以整除内的所有子集,
+$$
+v[i] = max\{\ v[i], max\{\left.\begin{matrix} 
+   nums[i] \% nums[j] == 0\\ j \in \{0 \sim i-1  \}
+  
+\end{matrix}\right\} nums[j] \}\ + 1 \  \}
+$$
+(满足了动态规划的<font color='brown'>无后效性</font> 我也不懂啥意思 ,但是根据思路, 不管先前的整除子集是啥, 该位置的整除子集数量是固定的, 且当数组向后滚动时均满足性质, 殊途同归)
+
+动归复杂度$n^2$
+
+**结果输出**
+
+记录下所得的最大子集长度$mx$与位置p
+
+将$nums[p]$放入输出数组内, $mx = mx - 1$ 来找$nums[p]$的最大整除解
+
+由数组该位置**倒序遍历**
+
+当<font color='red'>$nums[p]\  \% \ nums[i] == 0 \&\& mx == v[i]$</font>即找到一个最大整除解(题目支持 多个符合条件结果)
+
+将$nums[i]$ push入, $p = i, mx--$ 当mx =0 即找完; 
