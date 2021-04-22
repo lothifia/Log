@@ -30,7 +30,7 @@ set 用于优化 <font color='green'>滑动窗口</font> (二分查找 可以让
 
 ![20191106171908375-1618682427723](readme.assets/20191106171908375-1618682427723.png)
 
-![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/20191106171908375-1618682427723.png)
+
 
 
 
@@ -106,7 +106,7 @@ for循环 到$ i = 5$  此时str中 $ c!= a$ 在  $j$ 处回溯,
 
 ![61B2DA6A4975E890E866C3114DCCB72A](readme.assets/61B2DA6A4975E890E866C3114DCCB72A.png)
 
-![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/61B2DA6A4975E890E866C3114DCCB72A.png)
+
 
 ### 4.22 前缀和
 
@@ -155,7 +155,7 @@ for(int i = 1; i < nums.size() + 1; i++){
 
 ![2devision_updata](readme.assets/2devision_updata.png)
 
-![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/2devision_updata.png)
+
 
 
 
@@ -171,7 +171,7 @@ int sumRegion(int row1, int col1, int row2, int col2) {
 
 解法 图
 
-![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/2devision.png)
+
 
 ![2devision](readme.assets/2devision.png)
 
