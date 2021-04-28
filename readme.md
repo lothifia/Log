@@ -46,6 +46,10 @@ https://leetcode-cn.com/problems/remove-element/
 
 左指针做结果记录, 右指针进性遍历.
 
+##### 4/29 双指针的实质
+
+https://leetcode-cn.com/problems/sum-of-square-numbers/solution/shuang-zhi-zhen-de-ben-zhi-er-wei-ju-zhe-ebn3/
+
 
 
 #### LC 28 字符串匹配
@@ -236,3 +240,4 @@ $$
 当<font color='red'>$nums[p]\  \% \ nums[i] == 0 \&\& mx == v[i]$</font>即找到一个最大整除解(题目支持 多个符合条件结果)
 
 将$nums[i]$ push入, $p = i, mx--$ 当mx =0 即找完; 
+
