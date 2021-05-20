@@ -241,7 +241,7 @@ $$
 
 将$nums[i]$ push入, $p = i, mx--$ 当mx =0 即找完; 
 
-### Sort() in descentant order
+### Sort() in descentant order(5/ 20)
 
 ```c++
 // C++ program to demonstrate descending order sort using
@@ -253,14 +253,100 @@ int main()
 {
     int arr[] = { 1, 5, 8, 9, 6, 7, 3, 4, 2, 0 };
     int n = sizeof(arr) / sizeof(arr[0]);
-  
+  ///////////////
     sort(arr, arr + n, greater<int>());
-  
+  ///////////////
     cout << "Array after sorting : \n";
     for (int i = 0; i < n; ++i)
         cout << arr[i] << " ";
   
     return 0;
 }
+```
+
+### Priority_queue ->Cmp
+
+Priority_queue template
+
+```c++
+template <
+   class Type,
+   class Container=vector<Type>,
+   class Compare=less<typename Container::value_type> >
+class priority_queue
+```
+
+方法1
+
+```c++
+//使用结构体(类)然后再类内重构 '<'
+struct pp{
+    int a;
+    string str;
+    pp(int x, string st):a(x), str(st){}
+    bool operator< (pp b) const{
+        return a < b.a;
+    }
+    ///
+    bool myCmp(pp b){
+        return ...
+    }
+    ///
+};
+int main() {
+    vector<int> nums{14,70,53,83,49,91,36,80,92,51,66,70};
+    Solution s;
+    map<string, int> dic;
+//    for(int i = 0; i < 3; i++){
+//        pair<string ,int> tem;
+//        cin>>tem.first>>tem.second;
+//        dic[tem.first] = tem.second;
+//    }
+    priority_queue<pp, vector<pp> (,myCmp)> ppq;
+    for(auto i : nums){
+        pp tem(i, "a");
+        ppq.push(tem);
+    }
+    while(!ppq.empty()){
+        cout<<ppq.top().a<<' ';
+        ppq.pop();
+    }
+    return 0;
+}
+```
+
+方法二
+
+```c++
+//使用仿函数方法 重构操作符()
+struct cmp{
+    bool operator () (const pair<string, int> &a, const pair<string, int> &b) {
+        if (a.second != b.second) return a.second > b.second;
+        return a.first < b.first;
+    }
+};
+......
+    priority_queue<pair<string, int>, vector<pair<string, int>>, cmp> que;
+.....
+```
+
+方法三
+
+```c++
+//使用lambda
+auto cmp = [](pair<string, int>a, pair<string, int> b){
+	if(a.second != b.second) return a > b;
+	return a.first < b.first;
+};
+//decltype(cmp) -> declare type?
+priority_queue<pair<string, int>, vector<pair<string, int>>, decltype(cmp)> que(cmp);
+```
+
+#### Find the Kth(largest or smallest) Number
+
+对于前 kk 大或前 kk 小这类问题，有一个通用的解法：**优先队列**。优先队列可以在 O(\log n)O(logn) 的时间内完成插入或删除元素的操作（其中 nn 为优先队列的大小），并可以 O(1)O(1) 地查询优先队列顶端元素
+
+```
+
 ```
 
