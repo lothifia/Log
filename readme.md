@@ -14,25 +14,65 @@
 
 https://leetcode-cn.com/problems/contains-duplicate-iii/
 
-#### <font color='red'>set | unorderedset</font> 
+#### <font color='red'>set | unorderedset| multiset</font> 
+
+##### unorderedset 
+
+unordered_set 
+
+**1.**可以用来**去重** 并且比set快 
+
+**2.**快速搜索
+
+```c++
+//unordered_set initiate
+std::unordered_set<string> things {16}; // 16 buckets
+std::unordered_set<string> words {"one", "two", "three", "four"};// Initializer list
+std::unordered_set<string> some_words {++std::begin(words), std::end (words)};  // Range
+std::unordered_set<string> copy_wrds {words}; // Copy constructor
+//find
+int main() 
+{ 
+  
+    unordered_set<string> sampleSet = { "geeks1", "for", "geeks2" }; 
+  
+    // use of find() function 
+    if (sampleSet.find("geeks1") != sampleSet.end()) { //here
+        cout << "element found." << endl; 
+    } 
+    else { 
+        cout << "element not found" << endl; 
+    } 
+  
+    return 0; 
+}
+```
+
+
 
 ```c++
 set<int> set_test;//支持二分查找, 插入 删除
 set_test.lower_bound(begin, end, num);//找到set内部第一个 大于或等于num的值的位置 没有符合条件的则找到set_test.end();
-set_test.upper_bound(begin, end, num);//找到set内部最后一个 大于num的值的位置
+set_test.upper_bound(begin, end, num);//找到set内部第一个 大于num的值的位置
 set_test.insert(num);//插入一个
 set_test.erase(num| iterator)//根据数值或者 地址来删除
     //set -> 顺序存储 unorderedset ->非顺序存储(hash表)
     
 ```
 
-set 用于优化 <font color='green'>滑动窗口</font> (二分查找 可以让时间从$n^2$ 降到 $nlog(n)$)
+##### **set**
 
-![20191106171908375-1618682427723](readme.assets/20191106171908375-1618682427723.png)
+ 用于优化 <font color='green'>滑动窗口</font> (二分查找 可以让时间从$n^2$ 降到 $nlog(n)$)
 
 ![Image text](https://github.com/lothifia/Log/blob/main/readme.assets/20191106171908375-1618682427723.png)
 
+![20191106171908375-1618682427723](readme.assets/20191106171908375-1618682427723-1628522336089.png)
 
+##### multiset
+
+有序堆 , 可以存多个相同的值(logn)
+
+![image-20210827225848250](readme.assets/image-20210827225848250.png)
 
 ### 4/19
 
@@ -108,9 +148,9 @@ for循环 到$ i = 5$  此时str中 $ c!= a$ 在  $j$ 处回溯,
 
 **不断回溯找前缀的 后一位 比较**
 
+
+
 ![61B2DA6A4975E890E866C3114DCCB72A](readme.assets/61B2DA6A4975E890E866C3114DCCB72A.png)
-
-
 
 ### 4.22 前缀和
 
@@ -159,7 +199,7 @@ for(int i = 1; i < nums.size() + 1; i++){
 
 ![2devision_updata](readme.assets/2devision_updata.png)
 
-
+![2devision](readme.assets/2devision-1628522377673.png)
 
 
 
@@ -274,6 +314,14 @@ template <
    class Container=vector<Type>,
    class Compare=less<typename Container::value_type> >
 class priority_queue
+ /**
+ //升序队列，小顶堆
+ priority_queue <int,vector<int>,greater<int> > q;
+ //降序队列，大顶堆
+ priority_queue <int,vector<int>,less<int> >q;
+ //greater和less是std实现的两个仿函数（就是使一个类的使用看上去像一个函数。其实现就是类中实现一个operator()，这个类就有了类似函数的行为，就是一个仿函数类了）
+**/
+
 ```
 
 方法1
@@ -302,7 +350,7 @@ int main() {
 //        cin>>tem.first>>tem.second;
 //        dic[tem.first] = tem.second;
 //    }
-    priority_queue<pp, vector<pp> (,myCmp)> ppq;
+    priority_queue<pp, vector<pp> ,myCmp> ppq;
     for(auto i : nums){
         pp tem(i, "a");
         ppq.push(tem);
@@ -344,9 +392,81 @@ priority_queue<pair<string, int>, vector<pair<string, int>>, decltype(cmp)> que(
 
 #### Find the Kth(largest or smallest) Number
 
-对于前 kk 大或前 kk 小这类问题，有一个通用的解法：**优先队列**。优先队列可以在 O(\log n)O(logn) 的时间内完成插入或删除元素的操作（其中 nn 为优先队列的大小），并可以 O(1)O(1) 地查询优先队列顶端元素
+对于前 k 大或前 k 小这类问题，有一个通用的解法：**优先队列**。优先队列可以在 O(logn) 的时间内完成插入或删除元素的操作（其中 n 为优先队列的大小），并可以 O(1)O(1) 地查询优先队列顶端元素
+
+```c++
+#leetcode 502
+class Solution {
+public:
+    typedef pair<int, int> pr;
+
+    int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {
+        priority_queue<int, vector<int>, less<int>> pq;
+        int len = profits.size();
+        vector<pr> pv;
+        for(int i = 0; i < len; i++){
+            pv.push_back({capital[i], profits[i]});
+        }
+        sort(pv.begin(), pv.end());
+        int l = 0;
+        while(k > 0){
+            k--;
+            while(l < len && w >= pv[l].first){
+                pq.push(pv[l].second);
+                l++;
+            }
+            if(!pq.empty()){
+            w += pq.top();
+            pq.pop();
+            }
+        }
+        return w;
+    }
+};
+```
+
+### 5/23 sql
+
+Basically in MySQL you can't do an update on a table which you use in the SELECT part.
+
+ For detail you could check this behaviour which is documented at: http://dev.mysql.com/doc/refman/5.6/en/update.html
+
+In theory every DELETE is an UPDATE so that's why you get this error.You could simply do following:
+
+```msyql
+DELETE FROM myTable 
+ORDER BY my_id LIMIT 1;
+--(asc for minimun desc for max)
 
 ```
 
+### 8/31 差分数组
+
+差分数组对应的概念是前缀和数组，对于数组` [1,2,2,4]`，其差分数组为 [`1,1,0,2(, - 9)]`，差分数组的第` i` 个数即为原数组的第$ i-1$ 个元素和第 $i $个元素的差值，也就是说我们对差分数组求前缀和即可得到原数组。
+
+差分数组的性质是，当我们希望对原数组的某一个区间 $[l,r]$ 施加一个增量`inc` 时，差分数组 `d` 对应的改变是：`d[l]` 增加`inc`，d[r+1] 减少`inc`。这样对于区间的修改就变为了对于两个位置的修改。并且这种修改是可以叠加的，即当我们多次对原数组的不同区间施加不同的增量，我们只要按规则修改差分数组即可。
+
+特别地，当 r 为 n 时，我们无需修改 d[r + 1]，因为这个位置溢出了下标范围。如果求前缀和时考虑该位置，那么该位置对应的前缀和值必定为 0。读者们可以自行思考原因，以加深对差分数组的理解。(全部前缀和的负积累)
+
+### 9/3
+
+```c++
+
+void qSort(vector<int>& arr, int l, int r, int k){
+    if(l >= r) return;
+    int st = l; int ed = r;
+    while(l < r){
+        while(arr[st] <= arr[r] && l < r){
+            r--;
+        }
+        while(arr[st] >= arr[l] && l < r){
+            l++;
+        }
+        swap(arr[r], arr[l]);
+    }
+    swap(arr[l], arr[st]);
+    qSort(arr, l + 1, ed, k);
+    qSort(arr, st, l - 1, k);
+}
 ```
 
